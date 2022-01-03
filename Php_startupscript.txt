@@ -16,6 +16,8 @@ sudo apt update
 
 sudo apt -y install php7.4
 
+echo "Hi from $HOSTNAME" > /var/www/html/index.html
+
 cat <<'EOF' > /var/www/html/test.php
 <?php
 $date = date('d-m-y h:i:s');

@@ -1,0 +1,31 @@
+#! /bin/bash
+
+sudo apt update
+
+sudo apt -y install apache2
+
+sudo apt -y install lsb-release apt-transport-https ca-certificates
+
+sudo apt -y install wget
+
+sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+
+sudo apt update
+
+sudo apt -y install php7.4
+
+cat <<'EOF' > /var/www/html/test.php
+<?php
+$date = date('d-m-y h:i:s');
+for($x = 0;$x <= 999999999; $x++) {
+$a = $x;
+}
+echo "<br>";
+echo "HostName:";
+echo gethostname();
+echo "<br>";
+echo "<br> Updated on $date";
+?>
+EOF
